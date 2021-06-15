@@ -1,14 +1,20 @@
 package com.egen.model;
 
+import java.util.UUID;
+
 public class Address {
     private String id;
     // billing or shipping
-    private String addressType;
+    private AddressType addressType;
     private String addressLine1;
     private String addressLine2;
     private String city;
     private String state;
     private String zip;
+
+    public Address() {
+        this.id = UUID.randomUUID().toString();
+    }
 
     public String getId() {
         return id;
@@ -18,11 +24,11 @@ public class Address {
         this.id = id;
     }
 
-    public String getAddressType() {
+    public AddressType getAddressType() {
         return addressType;
     }
 
-    public void setAddressType(String addressType) {
+    public void setAddressType(AddressType addressType) {
         this.addressType = addressType;
     }
 
@@ -64,5 +70,18 @@ public class Address {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id='" + id + '\'' +
+                ", addressType='" + addressType + '\'' +
+                ", addressLine1='" + addressLine1 + '\'' +
+                ", addressLine2='" + addressLine2 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                '}';
     }
 }

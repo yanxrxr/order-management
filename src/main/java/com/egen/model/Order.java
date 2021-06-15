@@ -1,20 +1,23 @@
 package com.egen.model;
 
-import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.UUID;
 
 public class Order {
     private String id;
-    // new, prepare for shipment, shipped, delivered
-    private String status;
+    private OrderStatus status;
     private String customerId;
-    private float total;
+    private double total;
     private String paymentId;
     private String shippingId;
-    private Date dateCreated;
-    private Date dateModified;
+    private Timestamp dateCreated;
+    private Timestamp dateModified;
 
     public Order(String id){
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
+        this.dateCreated = new Timestamp(System.currentTimeMillis());
     }
 
     public String getId() {
@@ -25,11 +28,11 @@ public class Order {
         this.id = id;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 
@@ -41,11 +44,11 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public float getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -65,21 +68,33 @@ public class Order {
         this.shippingId = shippingId;
     }
 
-    public Date getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public Date getDateModified() {
+    public Timestamp getDateModified() {
         return dateModified;
     }
 
-    public void setDateModified(Date dateModified) {
+    public void setDateModified(Timestamp dateModified) {
         this.dateModified = dateModified;
     }
 
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", status='" + status + '\'' +
+                ", customerId='" + customerId + '\'' +
+                ", total=" + total +
+                ", paymentId='" + paymentId + '\'' +
+                ", shippingId='" + shippingId + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", dateModified=" + dateModified +
+                '}';
+    }
 }

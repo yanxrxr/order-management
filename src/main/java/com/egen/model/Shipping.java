@@ -1,11 +1,16 @@
 package com.egen.model;
 
+import java.util.UUID;
+
 public class Shipping {
     private String id;
-    // In-store pickup, curbside pickup, ship to home, 3rd party delivery
-    private String shippingMethod;
-    private float shippingCharges;
+    private ShippingMethod shippingMethod;
+    private double shippingCharges;
     private Address shippingAddress;
+
+    public Shipping() {
+        this.id = UUID.randomUUID().toString();
+    }
 
     public String getId() {
         return id;
@@ -15,19 +20,19 @@ public class Shipping {
         this.id = id;
     }
 
-    public String getShippingMethod() {
+    public ShippingMethod getShippingMethod() {
         return shippingMethod;
     }
 
-    public void setShippingMethod(String shippingMethod) {
+    public void setShippingMethod(ShippingMethod shippingMethod) {
         this.shippingMethod = shippingMethod;
     }
 
-    public float getShippingCharges() {
+    public double getShippingCharges() {
         return shippingCharges;
     }
 
-    public void setShippingCharges(float shippingCharges) {
+    public void setShippingCharges(double shippingCharges) {
         this.shippingCharges = shippingCharges;
     }
 
@@ -37,5 +42,15 @@ public class Shipping {
 
     public void setShippingAddress(Address shippingAddress) {
         this.shippingAddress = shippingAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "Shipping{" +
+                "id='" + id + '\'' +
+                ", shippingMethod=" + shippingMethod +
+                ", shippingCharges=" + shippingCharges +
+                ", shippingAddress=" + shippingAddress +
+                '}';
     }
 }

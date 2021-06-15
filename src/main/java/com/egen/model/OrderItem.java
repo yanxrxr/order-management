@@ -1,11 +1,18 @@
 package com.egen.model;
 
+import java.util.UUID;
+
 public class OrderItem {
     private String id;
     private String itemId;
     private int itemQty;
-    private float tax;
+    private double tax;
+    private double subtotal;
     private String orderId;
+
+    public OrderItem(String id) {
+        this.id = UUID.randomUUID().toString();
+    }
 
     public String getId() {
         return id;
@@ -31,12 +38,20 @@ public class OrderItem {
         this.itemQty = itemQty;
     }
 
-    public float getTax() {
+    public double getTax() {
         return tax;
     }
 
-    public void setTax(float tax) {
+    public void setTax(double tax) {
         this.tax = tax;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
 
     public String getOrderId() {
@@ -45,5 +60,17 @@ public class OrderItem {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "id='" + id + '\'' +
+                ", itemId='" + itemId + '\'' +
+                ", itemQty=" + itemQty +
+                ", tax=" + tax +
+                ", subtotal=" + subtotal +
+                ", orderId='" + orderId + '\'' +
+                '}';
     }
 }

@@ -1,13 +1,19 @@
 package com.egen.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.UUID;
 
 public class Payment {
     private String id;
     private String confirmationNumber;
     private String paymentMethod;
-    private Date paymentDate;
+    private Timestamp paymentDate;
     private Address billingAddress;
+
+    public Payment() {
+        this.id = UUID.randomUUID().toString();
+        this.paymentDate = new Timestamp(System.currentTimeMillis());
+    }
 
     public String getId() {
         return id;
@@ -33,11 +39,11 @@ public class Payment {
         this.paymentMethod = paymentMethod;
     }
 
-    public Date getPaymentDate() {
+    public Timestamp getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(Date paymentDate) {
+    public void setPaymentDate(Timestamp paymentDate) {
         this.paymentDate = paymentDate;
     }
 
@@ -47,5 +53,16 @@ public class Payment {
 
     public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id='" + id + '\'' +
+                ", confirmationNumber='" + confirmationNumber + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", paymentDate=" + paymentDate +
+                ", billingAddress=" + billingAddress +
+                '}';
     }
 }
