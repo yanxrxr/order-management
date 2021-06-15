@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com</groupId>
-	<artifactId>ordermanagment</artifactId>
+	<artifactId>order-management</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
-	<name>ordermanagment Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<name>order-management Maven Webapp</name>
+<!--	<url>http://maven.apache.org</url>-->
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -32,7 +32,6 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.2.10.Final</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -52,7 +51,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>ordermanagment</finalName>
+		<finalName>order-management</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
