@@ -1,6 +1,7 @@
 package com.egen;
 
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -15,9 +16,10 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+
 public class JPAConfig {
 
-//	@Bean
+	@Bean
 	public LocalContainerEntityManagerFactoryBean emf() {
 		//TODO: configure emf
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
@@ -30,7 +32,7 @@ public class JPAConfig {
 		return factory;
 	}
 
-//	@Bean
+	@Bean
 	public DataSource dataSource() {
 		//TODO: configure data source bean
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -41,23 +43,22 @@ public class JPAConfig {
 		return dataSource;
 	}
 
-//	@Bean
+	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
 		//TODO: configure transaction manager
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(emf);
 
 		return transactionManager;
-
 	}
 
 	private Properties jpaProperties() {
 		//TODO: configure jpa properties
 		Properties properties = new Properties();
 
-		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
-		properties.getProperty("hibernate.show_sql", "true");
+		properties.put("hibernate.hbm2ddl.auto", "create-drop");
+		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+		properties.put("hibernate.show_sql", "true");
 
 		return properties;
 	}
