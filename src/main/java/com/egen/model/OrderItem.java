@@ -1,18 +1,28 @@
 package com.egen.model;
 
-import java.util.UUID;
+import javax.persistence.*;
 
 public class OrderItem {
-    private String id;
-    private String itemId;
-    private int itemQty;
-    private double tax;
-    private double subtotal;
-    private String orderId;
 
-    public OrderItem(String id) {
-        this.id = UUID.randomUUID().toString();
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
+
+    @Column(name = "item_id")
+    private String itemId;
+
+    @Column(name = "item_qty")
+    private int itemQty;
+
+    @Column(name = "tax")
+    private double tax;
+
+    @Column(name = "subtotal")
+    private double subtotal;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private Order order;
 
     public String getId() {
         return id;
@@ -54,12 +64,12 @@ public class OrderItem {
         this.subtotal = subtotal;
     }
 
-    public String getOrderId() {
-        return orderId;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     @Override
@@ -70,7 +80,7 @@ public class OrderItem {
                 ", itemQty=" + itemQty +
                 ", tax=" + tax +
                 ", subtotal=" + subtotal +
-                ", orderId='" + orderId + '\'' +
+                ", order=" + order +
                 '}';
     }
 }

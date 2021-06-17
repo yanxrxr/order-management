@@ -1,19 +1,31 @@
 package com.egen.model;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.UUID;
 
 public class Payment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private String id;
+
+    @Column(name = "comfirmation_number")
     private String confirmationNumber;
+
+    @Column(name = "payment_method")
     private String paymentMethod;
+
+    @Column(name = "payment_date")
     private Timestamp paymentDate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address billingAddress;
 
-    public Payment() {
-        this.id = UUID.randomUUID().toString();
-        this.paymentDate = new Timestamp(System.currentTimeMillis());
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private Order order;
 
     public String getId() {
         return id;

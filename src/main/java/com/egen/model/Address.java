@@ -1,20 +1,33 @@
 package com.egen.model;
 
-import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private String id;
-    // billing or shipping
-    private AddressType addressType;
-    private String addressLine1;
-    private String addressLine2;
-    private String city;
-    private String state;
-    private String zip;
 
-    public Address() {
-        this.id = UUID.randomUUID().toString();
-    }
+    @Column(name = "address_type")
+    private AddressType addressType;
+
+    @Column(name = "address_line_1")
+    private String addressLine1;
+
+    @Column(name = "address_line_2")
+    private String addressLine2;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "zip")
+    private String zip;
 
     public String getId() {
         return id;

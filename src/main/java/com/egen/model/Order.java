@@ -1,24 +1,39 @@
 package com.egen.model;
 
-import java.sql.Time;
+import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
 public class Order {
-    private String id;
-    private OrderStatus status;
-    private String customerId;
-    private double total;
-    private String paymentId;
-    private String shippingId;
-    private Timestamp dateCreated;
-    private Timestamp dateModified;
 
-    public Order(String id){
-        this.id = UUID.randomUUID().toString();
-        this.dateCreated = new Timestamp(System.currentTimeMillis());
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private String id;
+
+    @Column(name = "status")
+    private OrderStatus status;
+
+    @Column(name = "customer_id")
+    private String customerId;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    private List<OrderItem> orderItems;
+
+    @Column(name = "total")
+    private double total;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    private List<Payment> payments;
+
+    @Column(name = "shipping_id")
+    private String shippingId;
+
+    @Column(name = "data_created")
+    private Timestamp dateCreated;
+
+    @Column(name = "date_modified")
+    private Timestamp dateModified;
 
     public String getId() {
         return id;
@@ -52,12 +67,20 @@ public class Order {
         this.total = total;
     }
 
-    public String getPaymentId() {
-        return paymentId;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setPaymentId(String paymentId) {
-        this.paymentId = paymentId;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
     }
 
     public String getShippingId() {
@@ -88,10 +111,11 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id='" + id + '\'' +
-                ", status='" + status + '\'' +
+                ", status=" + status +
                 ", customerId='" + customerId + '\'' +
+                ", orderItems=" + orderItems +
                 ", total=" + total +
-                ", paymentId='" + paymentId + '\'' +
+                ", payments=" + payments +
                 ", shippingId='" + shippingId + '\'' +
                 ", dateCreated=" + dateCreated +
                 ", dateModified=" + dateModified +

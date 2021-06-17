@@ -1,16 +1,23 @@
 package com.egen.model;
 
-import java.util.UUID;
+import javax.persistence.*;
 
 public class Shipping {
-    private String id;
-    private ShippingMethod shippingMethod;
-    private double shippingCharges;
-    private Address shippingAddress;
 
-    public Shipping() {
-        this.id = UUID.randomUUID().toString();
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private String id;
+
+    @Column(name = "shipping method")
+    private ShippingMethod shippingMethod;
+
+    @Column(name = "shipping_charges")
+    private double shippingCharges;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address shippingAddress;
 
     public String getId() {
         return id;

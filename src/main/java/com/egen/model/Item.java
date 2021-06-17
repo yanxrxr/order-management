@@ -1,8 +1,20 @@
 package com.egen.model;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Item {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+
+    @Column(name = "item_name")
     private String itemName;
+
+    @Column(name = "item_price")
     private String itemPrice;
 
     public String getId() {
