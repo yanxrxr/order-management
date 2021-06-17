@@ -3,6 +3,7 @@ package com.egen.model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
 public class Payment {
 
     @Id

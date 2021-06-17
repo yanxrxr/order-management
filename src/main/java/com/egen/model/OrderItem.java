@@ -2,6 +2,7 @@ package com.egen.model;
 
 import javax.persistence.*;
 
+@Entity
 public class OrderItem {
 
     @Id
