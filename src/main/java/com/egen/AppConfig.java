@@ -16,6 +16,6 @@ public class AppConfig extends WebMvcConfigurationSupport {
 
     @Override
     protected void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
+        super.addCorsMappings(registry);
     }
 }

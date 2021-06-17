@@ -19,6 +19,6 @@ public class AppInitialize extends AbstractAnnotationConfigDispatcherServletInit
 
 	@Override
 	protected String[] getServletMappings() {
-		return new  String[]{"/order/*"};
+		return new String[]{"/api/*"};
 	}
 }
