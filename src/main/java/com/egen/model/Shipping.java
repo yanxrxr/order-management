@@ -3,6 +3,7 @@ package com.egen.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "shipping")
 public class Shipping {
 
     @Id
@@ -10,7 +11,7 @@ public class Shipping {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "shipping method")
+    @Column(name = "shipping_method")
     private ShippingMethod shippingMethod;
 
     @Column(name = "shipping_charges")

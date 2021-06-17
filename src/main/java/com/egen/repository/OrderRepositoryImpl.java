@@ -3,7 +3,6 @@ package com.egen.repository;
 import com.egen.model.Order;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NamedQueries;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
